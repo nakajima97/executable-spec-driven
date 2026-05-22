@@ -38,7 +38,7 @@ model: sonnet
 │   ├── 3-a: 合意対象の判定（メイン）
 │   └── 3-b: 仕様生成 → general-purpose エージェント
 │             ↓ 生成ファイル一覧を受け取る
-├── Step4: ドキュメント更新（メイン）
+├── Step4: 横断インデックスの更新（メイン）
 └── Step5: 人間確認・合意（メイン）
 ```
 
@@ -143,7 +143,10 @@ general-purposeエージェントへの指示例:
 - 完了後、生成したファイル一覧を「どの合意対象に対応するか」を明示して返してください
 ```
 
-### Step 4: ドキュメント更新（メイン）
+### Step 4: 横断インデックスの更新（メイン）
+
+Step 3-b で生成しない「リポジトリ横断のインデックス・サマリ系ドキュメント」だけをここで更新する。
+Step 3-a の 成果物 列に挙がっているファイル（`docs/specs/openapi.yaml`・`docs/specs/screen-transition.md`・マイグレーション・各種コンポーネント等）は Step 3-b で生成済みのため、このステップでは触らない。
 
 以下を即時ファイル保存する。変更がない項目はスキップ。
 `docs/specs/` のファイルが存在しない場合は `docs/template/` からコピーして新規作成する。
@@ -151,12 +154,10 @@ general-purposeエージェントへの指示例:
 | ファイル | 内容 | 更新条件 |
 |---|---|---|
 | `docs/specs/screen-list.md` | 新規画面を行として追記 | 画面の追加・変更がある場合 |
-| `docs/specs/screen-transition.md` | 遷移をmermaid flowchartに追記 | 画面遷移の変更がある場合 |
 | `docs/specs/er-diagram.md` | テーブル・カラムをmermaid erDiagramに追記・修正 | DB構造の変更がある場合 |
 | `docs/specs/api-list.md` | 新規エンドポイントを行として追記（概要一覧） | REST APIエンドポイント（JSONレスポンスを返すもの）の追加・変更がある場合（画面を返すルートは対象外） |
-| `docs/specs/openapi.yaml` | Step3で生成済み（追加操作不要） | Step3でOpenAPI YAMLを生成した場合 |
 
-> `api-list.md` は REST API（JSONレスポンスを返すエンドポイント）のみを記載する。`openapi.yaml` はその機械可読の完全仕様。画面ルートは `screen-list.md` に記載し `api-list.md` には含めない。
+> `api-list.md` は REST API（JSONレスポンスを返すエンドポイント）のみを記載する。`openapi.yaml`（Step 3-b で生成）はその機械可読の完全仕様。画面ルートは `screen-list.md` に記載し `api-list.md` には含めない。
 
 ### Step 5: 人間への確認・合意（メイン）
 
