@@ -1,8 +1,9 @@
-# ai-driven-development
+# executable-spec-driven（実行可能仕様駆動開発）
 
 ## ワークフローの概要
 
-GitHub Issueを起点に、要件定義 → 実装準備 → 実装まで一貫して進めるAI駆動開発のワークフローです。
+GitHub Issueを起点に、要件定義 → 実装準備 → 実装まで一貫して進める実行可能仕様駆動開発のワークフローです。
+実装前にStorybook / OpenAPI / DBスキーマ / ログ形式などの実行可能な仕様（executable specification）を確定させ、テストコードを仕様書として扱います。
 各ステップはスラッシュコマンドで呼び出します。
 
 | ステップ | コマンド | 内容 |
@@ -23,13 +24,13 @@ GitHub Issueを起点に、要件定義 → 実装準備 → 実装まで一貫�
 
 ```bash
 # このリポジトリをクローン
-git clone https://github.com/nakajima97/ai-driven-development.git
+git clone https://github.com/nakajima97/executable-spec-driven.git
 
 # 対象プロジェクトのルートに移動
 cd /path/to/your-project
 
 # インストールスクリプトを実行
-bash /path/to/ai-driven-development/install.sh
+bash /path/to/executable-spec-driven/install.sh
 ```
 
 スクリプトは以下を行います:

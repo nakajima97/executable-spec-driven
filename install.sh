@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: Run from the root of the project you want to set up
-#   bash /path/to/ai-driven-development/install.sh
+#   bash /path/to/executable-spec-driven/install.sh
 
 set -euo pipefail
 
