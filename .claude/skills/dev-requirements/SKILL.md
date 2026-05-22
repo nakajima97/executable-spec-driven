@@ -1,7 +1,7 @@
 ---
 name: dev-requirements
 description: >
-  AI駆動開発ワークフローの「要件定義」フェーズ（ステップ2）を実行する。
+  実行可能仕様駆動開発ワークフローの「要件定義」フェーズ（ステップ2）を実行する。
   「/dev-requirements <issue番号>」で呼び出す。issue番号は必須引数。
 
   GitHubのissueを起点に以下を自動で行う: (1) 不明点の確認とissueへの記録、
@@ -19,7 +19,7 @@ model: sonnet
 
 ## 概要
 
-AI駆動開発ワークフロー（`docs/workflow/ai-dev-workflow.md`）のステップ2「要件定義」を実行する。
+実行可能仕様駆動開発ワークフロー（`docs/workflow/ai-dev-workflow.md`）のステップ2「要件定義」を実行する。
 アウトプット駆動開発の考え方に基づき、実装前に仕様・契約を確定させることがゴール。
 
 ## 引数
