@@ -46,6 +46,12 @@
   - 開発環境: `docs/architecture/backend/dev-environment.md`
   - 命名規則: `docs/architecture/backend/naming-conventions.md`
 
+## 開発ルール
+
+詳細はファイル種別ごとに `.claude/rules/` を参照すること。常に適用される汎用ルールは `.claude/rules/core.md` にまとまっている。
+
 ## 禁止事項
-- サンドボックスの解除
-  - サンドボックスが原因でタスクを完了できない場合はユーザーにその旨を伝えて実施してほしいことを伝えること
+- **サンドボックスの解除は絶対に行わない**
+  - `dangerouslyDisableSandbox` を勝手に有効化しない
+  - サンドボックスが原因でタスクを完了できない場合は、その旨を必ずユーザーに伝えて人間に操作を依頼する
+  - 「タスクを進めるため」を理由にサンドボックスを解除することは禁止
