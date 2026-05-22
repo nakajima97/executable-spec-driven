@@ -23,23 +23,7 @@ alwaysApply: true
 ## ライブラリのインストール
 
 新規ライブラリの追加は必ずユーザーの承認を得ること。
-
-承認が必要なコマンド例:
-- `npm install <pkg>` / `npm add <pkg>`
-- `yarn add <pkg>`
-- `pnpm add <pkg>`
-- `bun add <pkg>`
-- `composer require <pkg>`
-- `pip install <pkg>` / `uv add <pkg>` / `poetry add <pkg>`
-- `cargo add <pkg>`
-- `go get <pkg>`
-
-承認不要なコマンド（ロックファイルからの単純復元）:
-- `npm install`（パッケージ名なし）
-- `pnpm install`（パッケージ名なし）
-- `composer install`（パッケージ名なし）
-- `pip install -r requirements.txt`
-- `uv sync` / `poetry install`
+ロックファイルからの復元（パッケージ名を指定しないインストール）は承認不要。
 
 ## サンドボックスの取り扱い
 
