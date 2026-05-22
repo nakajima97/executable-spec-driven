@@ -14,6 +14,7 @@
     - React※メタフレームワーク（Next.JS、React Router等）は関係ない
     - Storybook
     - Vitest
+    - React Testing Library
   - バックエンド
     - 指定なし
       - FastAPIのようにOpenAPI specを自動生成されるものだと楽
