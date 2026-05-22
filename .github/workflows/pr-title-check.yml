@@ -1,0 +1,25 @@
+name: PR Title Check
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title prefix
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          if echo "$TITLE" | grep -qiE '^\[(major|minor|patch)\]'; then
+            echo "PR title has valid prefix: $TITLE"
+          else
+            echo "Error: PR title must start with [major], [minor], or [patch]"
+            echo "Current title: $TITLE"
+            echo ""
+            echo "Examples:"
+            echo "  [major] 破壊的変更の内容"
+            echo "  [minor] 新機能の内容"
+            echo "  [patch] バグ修正の内容"
+            exit 1
+          fi
