@@ -10,6 +10,17 @@
 - 関連 issue がない作業（メンテナンス・ドキュメント単独修正など）は `chore:` / `docs:` などの conventional commits プレフィックスを使ってよい
 - ステージングは `git add` で対象ファイルを個別に指定する（`git add .` / `git add -A` は使わない）。意図しない一時ファイル・他作業の差分を混入させないため
 
+## ブランチ命名規約
+
+- ASCII 文字のみで構成する（日本語・全角記号は使わない）
+- 形式: `<issue番号>-<type>/<kebab-case-name>`
+  - `<issue番号>`: 紐付く GitHub issue の番号
+  - `<type>`: `feature` / `fix` / `docs` / `refactor` / `chore` など conventional commits と揃える
+  - `<kebab-case-name>`: 内容を短く表すハイフン区切りの名称（小文字）
+  - 例: `7-docs/branch-naming-rule` / `42-feature/user-login` / `108-fix/null-pointer-on-login`
+- 関連 issue がない作業の場合は `<type>/<kebab-case-name>` の形式でよい（例: `chore/update-readme`）
+- `gh issue develop <issue番号> --name <ブランチ名>` を使うと issue とブランチの紐付けが自動化できる
+
 ## フォーマット・コード整形
 
 - フォーマッタ（biome / prettier / pint / black 等）の整形は自己判断で実行しない
