@@ -8,6 +8,7 @@
 |---|---|
 | [workflow/](workflow/) | 実行可能仕様駆動開発ワークフローの定義・参考資料 |
 | [template/](template/) | ワークフロー実行時に `docs/specs/` などへコピーして使うテンプレート |
+| [examples/](examples/) | 実プロジェクトで使われている設定・スクリプトの設計パターンと参考実装 |
 | `architecture/`（プロジェクト追加） | 各プロジェクト固有のアーキテクチャ設計（ディレクトリ構造・命名規則等） |
 | `specs/`（ワークフローで自動生成） | 確定した仕様。画面一覧・API一覧・ER図・OpenAPI定義など |
 | `adr/`（必要に応じて追加） | Architecture Decision Record（重要な設計判断の記録） |
@@ -61,6 +62,6 @@
 ## 並行開発のベストプラクティス（参考）
 
 複数 issue を並列に進める場合、`git worktree` を活用してブランチを物理的に分離する運用が有効。
-keiba-db-gen2 では `scripts/wt-new.sh` / `scripts/wt-rm.sh` のような補助スクリプトで、worktree 作成と同時に Docker コンテナのポート・DB 名を自動割り当てしている。
+worktree 作成と同時に Docker コンテナのポート・DB 名を自動割り当てする補助スクリプトの設計パターンを [examples/README.md](examples/README.md) にまとめている。
 
-本リポジトリでは具体的なスクリプトは提供しないが、各プロジェクトでフレームワークに合わせて用意することを推奨する。
+各プロジェクトでは、そのパターンに従って自プロジェクトのフレームワークに合わせた `scripts/wt-new.sh` / `scripts/wt-rm.sh` を作る運用を推奨する。
