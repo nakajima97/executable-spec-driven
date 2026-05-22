@@ -81,7 +81,8 @@ elif git -C "${PROJECT_ROOT}" ls-remote --exit-code --heads origin "${BRANCH_NAM
   git -C "${PROJECT_ROOT}" fetch origin "${BRANCH_NAME}"
 else
   echo "==> Creating branch via 'gh issue develop' (linked to issue #${ISSUE_NUM})"
-  gh issue develop "${ISSUE_NUM}" --name "${BRANCH_NAME}" --base main
+  DEFAULT_BRANCH=$(gh repo view --json defaultBranchRef --jq .defaultBranchRef.name)
+  gh issue develop "${ISSUE_NUM}" --name "${BRANCH_NAME}" --base "${DEFAULT_BRANCH}"
   git -C "${PROJECT_ROOT}" fetch origin "${BRANCH_NAME}"
 fi
 
@@ -101,7 +102,7 @@ echo "==> Installing Node dependencies..."
 echo "==> Configuring .env..."
 cp "${MAIN_SOURCE}/.env" "${WT_SOURCE}/.env"
 
-APP_PORT="800${OFFSET}"
+APP_PORT="$((8000 + OFFSET))"
 VITE_PORT="$((6000 + OFFSET))"
 STORYBOOK_PORT="$((7000 + OFFSET))"
 DB_PORT="$((3306 + OFFSET))"

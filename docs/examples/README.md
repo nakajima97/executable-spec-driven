@@ -80,7 +80,7 @@ issue 番号を主キーにすると registry 操作・人間からの想起と�
 | `MAIN_SOURCE="${PROJECT_ROOT}/source"` | `source/` 配下に Laravel プロジェクトを置く構成 | リポジトリ直下にコードを置く構成なら `MAIN_SOURCE=${PROJECT_ROOT}` |
 | `docker run laravelsail/php84-composer` で composer install | PHP 依存解決を使い捨てコンテナでやる | Python なら `uv sync` / `pip install`、Node 単独なら不要 |
 | `pnpm install --frozen-lockfile` | Node 側は pnpm | npm/yarn/bun に置換 |
-| `APP_PORT=800${OFFSET}` の文字列連結 | offset が 1〜9 前提（10 以上で `80010` になる罠あり） | `APP_PORT=$((8000 + OFFSET))` にすると桁が増えても安全 |
+| ポート式 `$((BASE + OFFSET))` | 算術式で算出すれば offset が 2 桁になっても安全（`"800${OFFSET}"` のような文字列連結は 10 以上で `80010` になる罠あり） | base 値（8000/6000/3306 等）をプロジェクトで使うポートに置換 |
 | 書き換える `.env` キー | Sail が参照する `COMPOSE_PROJECT_NAME` / `APP_PORT` / `VITE_PORT` / `STORYBOOK_PORT` / `FORWARD_DB_PORT` / `DB_DATABASE` | フレームワークが参照するキーに置換 |
 | `./vendor/bin/sail down` | Sail のラッパー | `docker compose down`、`make down`、`devcontainer down` 等 |
 
