@@ -24,7 +24,7 @@ GitHub Issueを起点に、要件定義 → 実装準備 → 実装まで一貫�
 
 ```bash
 # このリポジトリをクローン
-git clone https://github.com/nakajima97/ai-driven-development.git executable-spec-driven
+git clone https://github.com/nakajima97/executable-spec-driven.git
 
 # 対象プロジェクトのルートに移動
 cd /path/to/your-project
