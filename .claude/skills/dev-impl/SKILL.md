@@ -128,7 +128,7 @@ general-purposeエージェントへの指示例:
 - テストスイートがすべてパスしているか
   - テストランナーのコマンドは `docs/architecture/` または `package.json`/`README.md` から判断する
 - 実装準備フェーズ（ステップ3）で記録された `## 承認済みテスト計画` の各項目が実装されており、壊れていないか
-  - `gh issue view <番号> --comments` で `## 承認済みテスト計画` 見出しのコメントを取得して確認する
+  - Step 1 でコンテキストに保持した承認済みテスト計画と照合する（再 fetch しない）
 
 **2. 仕様準拠の確認**
 - `docs/specs/` の確定仕様（openapi.yaml・api-list.md・screen-list.md等）と実装が一致しているか
