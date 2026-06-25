@@ -43,7 +43,7 @@ model: sonnet
   ├── [dev-auto-plan-reviewer] テスト計画レビュー（仕様照合・承認判断）
   │       ↓ 承認 or 修正リスト（最大1回フィードバックループ）
   ├── [メイン] 承認済みテスト計画をissueに記録
-  ├── [dev-auto-test-impl] テスト実装（dev-impl-prepのStep5相当）
+  ├── [dev-auto-test-impl] テスト実装（承認済みテスト計画をテストコードとして実装）
   │       ↓ テストファイル一覧を返す
   ├── [dev-auto-test-reviewer] テストセルフレビュー・修正（仕様との照合）
   │       ↓ レビュー結果と修正ファイル一覧を返す

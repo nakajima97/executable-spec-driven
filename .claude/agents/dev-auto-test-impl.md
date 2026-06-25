@@ -2,6 +2,7 @@
 name: dev-auto-test-impl
 description: /dev-auto ワークフローのテスト実装担当。承認済みテスト計画をテストコードとして実装する。dev-auto スキルのオーケストレーターからStep6で起動される。直接呼び出さないこと。
 model: sonnet
+tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 
 あなたは実行可能仕様駆動開発の「テスト実装」を担当します。
