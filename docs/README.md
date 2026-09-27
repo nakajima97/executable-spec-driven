@@ -12,7 +12,7 @@
 | `architecture/`（プロジェクト追加） | 各プロジェクト固有のアーキテクチャ設計（ディレクトリ構造・命名規則等） |
 | `specs/`（ワークフローで自動生成） | 確定した仕様。画面一覧・API一覧・ER図・OpenAPI定義など |
 | `adr/`（必要に応じて追加） | Architecture Decision Record（重要な設計判断の記録） |
-| `technical-environment.md`（プロジェクト追加） | 言語・ランタイム・フレームワーク・DB等の技術スタック |
+| `specs/technical-environment.md`（プロジェクト追加） | 言語・ランタイム・フレームワーク・DB等の技術スタックと実行コマンド（スキル・レビュアーがテスト・ビルド・CI 相当チェックのコマンドを参照する） |
 
 ## このリポジトリの位置づけ
 
@@ -21,7 +21,7 @@
 
 1. このリポジトリの `docs/` 構造を踏襲する
 2. `docs/template/` のファイルを `docs/specs/` にコピーしてワークフローで埋めていく
-3. `docs/template/technical-environment.md` を `docs/technical-environment.md` にコピーしてプロジェクト固有の技術スタックを記述する
+3. `docs/template/technical-environment.md` を `docs/specs/technical-environment.md` にコピーしてプロジェクト固有の技術スタック・実行コマンドを記述する
 4. `docs/architecture/` をプロジェクト固有に作成する
 5. 重要な設計判断が発生したら `docs/adr/` に ADR を残す
 

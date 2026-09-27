@@ -16,6 +16,42 @@ GitHub Issueを起点に、要件定義 → 実装準備 → 実装まで一貫�
 各ステップの成果物はGitHub Issueのコメントに自動記録されます。
 次のステップを開始する前に、前のステップのコメントが記録されていることを確認してください。
 
+### 自律実行・補助スキル
+
+| コマンド | 内容 |
+|---|---|
+| `/dev-auto <issue番号>` | ステップ2〜4を自律実行（人間のタッチポイントは仕様合意1回のみ） |
+| `/refactor-auto <issue番号>` | リファクタ issue を探索 → 計画承認 → 実装 → レビュー修正ループで自律実行 |
+| `/bugfix-auto <issue番号>` | bug issue を再現・原因分析 → 計画承認 → 回帰テスト先行の修正 → レビュー修正ループで自律実行 |
+| `/auto-loop [--limit N] [issue番号...]` | 複数の refactoring / bug / skill-improvement issue を内側ワークフローに順次処理させる外側ループ（Herdr 上で実行） |
+| `/auto-loop-parallel [--parallel N] [--limit N] [issue番号...]` | `/auto-loop` を issue ごとに並列実行するメタ指揮役 |
+| `/compliance-audit [観点...]` | 規約・ADR・仕様・セキュリティの逸脱を固定観点で調査し issue を起票 |
+| `/create-branch <issue番号>` | issue からブランチ命名規約に沿ったブランチを作成 |
+| `/create-pr` | PR テンプレートに沿って PR を作成 |
+
+自律実行スキルの共通手順（開始時ガード・コメント投稿許可など）は `.claude/skills/_shared/orchestrator-common.md` にまとまっています。
+
+#### 自律実行スキルを使う場合の前提
+
+- GitHub ラベル `refactoring` / `bug` / `skill-improvement` / `documentation` を用意する（`/auto-loop` を使う場合は `auto-loop:escalated` / `auto-loop:log` も）
+- `docs/specs/technical-environment.md` の `## 実行コマンド`（テスト・ビルド・型チェック・フォーマット・Lint・CI 相当チェック）を埋める。エージェント・レビュアーはここからコマンドを取得する
+- エージェントが実行するテスト・ビルド等のコマンドを `.claude/settings.json` の `permissions.allow` に追加する（許可外の場合はレビュアーが静的確認にフォールバックする）
+- `/auto-loop` 系を使う場合:
+  - Herdr（ターミナル多重化ツール）を導入し、Herdr 内で起動する。`herdr` / `git` / `gh` をサンドボックスの `excludedCommands` に含める必要がある（プロジェクトごとに判断して設定する）
+  - worktree 作成・削除スクリプト（`scripts/wt-new.sh` / `scripts/wt-rm.sh`）を用意する。求める振る舞いは `.claude/skills/auto-loop/SKILL.md` の「worktree スクリプトの前提」を参照
+  - 自動マージは `CLAUDE.md` で `/auto-loop` による自動マージを明示的に許可した場合のみ行われる。許可がなければ条件判定の記録にとどめ、マージは人間に引き渡す
+
+### 安全装置（フック）
+
+`.claude/settings.json` で以下のフックを登録しています。
+
+| ファイル | タイミング | 内容 |
+|---|---|---|
+| `.claude/block-destructive-commands.mjs` | PreToolUse（Bash） | 強制 push・hard reset・未コミット変更の破棄など、回復不能な操作を決定論的にブロック |
+| `.claude/detect-fabrication.mjs` | Stop / SubagentStop | ツールを呼ばずに結果を捏造した応答を検知して警告 |
+
+動作を変更したら `node --test .claude/*.test.mjs` で回帰確認してください。
+
 ---
 
 ## 導入方法

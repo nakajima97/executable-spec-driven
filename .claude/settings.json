@@ -15,15 +15,41 @@
     ],
     "deny": [
       "Bash(curl *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard*)",
+      "Bash(git branch -D*)",
+      "Bash(git clean*)",
+      "Bash(rm -rf*)",
       "Read(./.env)",
       "Read(./.env.*)",
-      "Read(./secrets/**)"
+      "Read(**/.env*)",
+      "Read(./secrets/**)",
+      "Edit(.github/workflows/*)",
+      "Edit(.git/hooks/*)"
     ]
   },
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true
   },
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Running `gh issue comment` against this repository's own issues is allowed. refactor-auto/bugfix-auto/dev-auto post phase checkpoints (agreed spec, approved plan, implementation-complete, completion, and out-of-scope markers) as plain human-readable progress notes for cross-session resume, and auto-loop/auto-loop-parallel post escalation notes (the condition that triggered the hold, findings from the investigation, the options a human should choose between, and how to resume) next to the auto-loop:escalated label so the reason is not lost when the session ends. These issue comments are status notes only - they are NOT automation trigger commands (no /deploy, /merge, atlantis apply, or bot directives)."
+    ]
+  },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/block-destructive-commands.mjs\""
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",

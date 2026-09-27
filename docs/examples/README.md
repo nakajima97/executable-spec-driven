@@ -60,7 +60,7 @@ issue 番号を主キーにすると registry 操作・人間からの想起と�
 ## 新プロジェクトに取り込む手順（AI 向け）
 
 1. 本 README の「パターン」セクションを読む
-2. プロジェクトの `docs/technical-environment.md` または `docs/architecture/` を読み、フレームワーク・パッケージマネージャ・コンテナ管理ツール・必要なポート種別を把握する
+2. プロジェクトの `docs/specs/technical-environment.md` または `docs/architecture/` を読み、フレームワーク・パッケージマネージャ・コンテナ管理ツール・必要なポート種別を把握する
 3. `scripts/wt-new.sh` / `scripts/wt-rm.sh` を新規作成する。具体例として `docs/examples/scripts/wt-new.sh` を参考にしてよいが、Laravel/Sail/PHP/pnpm 固有のコマンドはそのままコピーしない
 4. プロジェクトの README または `docs/` に使い方を追記する
 5. `.gitignore` に `.worktree-registry` を追加する（環境固有の状態のため）
