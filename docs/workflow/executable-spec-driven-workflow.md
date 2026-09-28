@@ -89,7 +89,13 @@
   - `dev-impl-prep`: 実装準備（Step 3）
   - `dev-impl`: 実装（Step 4）
   - `dev-auto`: 完全自律モード（Step 2〜4 を1コマンドで自動実行）
+  - `create-branch`: issue に紐づく作業ブランチの作成
   - `create-pr`: PR作成
+- 機能開発以外の issue も同じ思想（issue コメントを介した再開・レビュアーエージェントによる代理判断）で自律実行する
+  - `refactor-auto`: リファクタ issue の自律実行
+  - `bugfix-auto`: bug issue の自律修正（回帰テスト先行）
+  - `auto-loop` / `auto-loop-parallel`: 複数 issue を内側ワークフロー（`refactor-auto` / `bugfix-auto`）に順次・並列で処理させる外側ループ
+  - `compliance-audit`: 規約・ADR・仕様・セキュリティの逸脱を固定観点で調査し issue 化する（外側ループの入力を作る）
 - AIが行う各タスクをagentとして実装する
 - ドキュメント更新が必要であれば更新する
   - 回す中で生成されるドキュメント
